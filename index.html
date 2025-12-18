@@ -2,16 +2,33 @@
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>Test Webapp</title>
+  <title>Custom Stand-By Webapp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: white;
+      font-family: sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welkom</h1>
-  <p id="output"></p>
+  <div id="app">Webapp wordt geladen…</div>
 
   <script src="Custom Stand-By.js"></script>
   <script>
-    // Test: laat zien dat het script draait
-    document.getElementById("output").textContent = "Script geladen!";
+    // Als je script een functie heeft zoals init(), roep die hier aan
+    if (typeof init === "function") {
+      init();
+    } else {
+      document.getElementById("app").textContent = "Script geladen, maar geen init-functie gevonden.";
+    }
   </script>
 </body>
 </html>
