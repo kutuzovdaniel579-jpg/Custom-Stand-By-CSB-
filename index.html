@@ -9,26 +9,35 @@
       margin: 0;
       padding: 0;
       background: black;
-      color: white;
-      font-family: sans-serif;
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      background-image: url('https://i.postimg.cc/nL2sHqsR/IMG-4296.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    #clock {
+      font-size: 70px;
+      font-family: monospace;
+      color: white;
+      text-shadow: 0 0 10px rgba(255,255,255,0.7);
     }
   </style>
 </head>
 <body>
-  <div id="app">Webapp wordt geladen…</div>
-
-  <script src="Custom Stand-By.js"></script>
+  <div id="clock">--:--:--</div>
   <script>
-    // Als je script een functie heeft zoals init(), roep die hier aan
-    if (typeof init === "function") {
-      init();
-    } else {
-      document.getElementById("app").textContent = "Script geladen, maar geen init-functie gevonden.";
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2,"0");
+      const m = String(now.getMinutes()).padStart(2,"0");
+      const s = String(now.getSeconds()).padStart(2,"0");
+      document.getElementById("clock").innerHTML = h+":"+m+":"+s;
     }
+    updateClock();
+    setInterval(updateClock, 1000);
   </script>
 </body>
 </html>
