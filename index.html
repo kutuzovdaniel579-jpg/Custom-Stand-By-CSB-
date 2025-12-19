@@ -25,29 +25,30 @@
       font-family: monospace;
       color: white;
       text-shadow: 0 0 10px rgba(255,255,255,0.7);
-      margin-bottom: auto; /* klok blijft in het midden */
-      margin-top: auto;
+      margin: auto 0; /* klok blijft in het midden */
     }
 
     /* Container onderaan */
     .signal-container {
       width: 100%;
       display: flex;
-      justify-content: center;
+      justify-content: space-between; /* trekt balkjes uit naar de kanten */
       position: fixed;
       bottom: 20px;
+      padding: 0 20px;
     }
 
     .signal-bars {
       display: flex;
-      flex-direction: row-reverse; /* hoogste bar rechts */
+      flex-direction: row-reverse; /* van rechts naar links */
       align-items: flex-end;
-      gap: 6px;
-      height: 60px;
+      gap: 8px;
+      flex: 1;
     }
 
     .bar {
-      width: 10px;
+      flex: 1; /* vult de breedte */
+      max-width: 20px; /* optioneel: max breedte per balk */
       background: #00ff88;
       border-radius: 2px;
       transition: height 0.3s ease;
@@ -59,6 +60,9 @@
 
   <div class="signal-container">
     <div class="signal-bars" id="bars">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
@@ -79,15 +83,18 @@
     updateClock();
     setInterval(updateClock, 1000);
 
-    // bereikbalken bewegen omhoog/omlaag
+    // bereikbalken bewegen van rechts naar links
     const bars = document.querySelectorAll(".bar");
+    let index = 0;
     function animateBars() {
-      bars.forEach(bar => {
-        const randomHeight = Math.floor(Math.random() * 60) + 5; // hoogte tussen 5 en 65px
-        bar.style.height = randomHeight + "px";
+      bars.forEach((bar, i) => {
+        const pos = (index + i) % bars.length;
+        const height = (pos % 5 + 1) * 12; // varieert tussen 12 en 60px
+        bar.style.height = height + "px";
       });
+      index = (index + 1) % bars.length;
     }
-    setInterval(animateBars, 500); // elke halve seconde nieuwe hoogte
+    setInterval(animateBars, 300);
   </script>
 </body>
 </html>
