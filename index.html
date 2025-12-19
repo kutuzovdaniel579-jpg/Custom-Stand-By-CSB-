@@ -25,8 +25,8 @@
       font-family: monospace;
       color: white;
       text-shadow: 0 0 10px rgba(255,255,255,0.7);
-      margin-bottom: auto; /* duwt klok naar boven */
-      margin-top: 40px;
+      margin-bottom: auto; /* klok blijft in het midden */
+      margin-top: auto;
     }
 
     /* Container onderaan */
@@ -34,34 +34,23 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      align-items: flex-end;
       position: fixed;
       bottom: 20px;
     }
 
     .signal-bars {
       display: flex;
-      flex-direction: row-reverse; /* van rechts naar links */
+      flex-direction: row-reverse; /* hoogste bar rechts */
       align-items: flex-end;
       gap: 6px;
-      height: 40px;
+      height: 60px;
     }
 
     .bar {
-      width: 8px;
-      background: rgba(255,255,255,0.3);
-      border-radius: 2px;
-      transition: background 0.3s;
-    }
-
-    .bar1 { height: 8px; }
-    .bar2 { height: 16px; }
-    .bar3 { height: 24px; }
-    .bar4 { height: 32px; }
-    .bar5 { height: 40px; }
-
-    .active .bar {
+      width: 10px;
       background: #00ff88;
+      border-radius: 2px;
+      transition: height 0.3s ease;
     }
   </style>
 </head>
@@ -70,15 +59,16 @@
 
   <div class="signal-container">
     <div class="signal-bars" id="bars">
-      <span class="bar bar1"></span>
-      <span class="bar bar2"></span>
-      <span class="bar bar3"></span>
-      <span class="bar bar4"></span>
-      <span class="bar bar5"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
     </div>
   </div>
 
   <script>
+    // klok
     function updateClock() {
       const now = new Date();
       const h = String(now.getHours()).padStart(2,"0");
@@ -89,10 +79,15 @@
     updateClock();
     setInterval(updateClock, 1000);
 
-    // Laat bereikbalkjes pulseren
-    setInterval(() => {
-      document.getElementById("bars").classList.toggle("active");
-    }, 1000);
+    // bereikbalken bewegen omhoog/omlaag
+    const bars = document.querySelectorAll(".bar");
+    function animateBars() {
+      bars.forEach(bar => {
+        const randomHeight = Math.floor(Math.random() * 60) + 5; // hoogte tussen 5 en 65px
+        bar.style.height = randomHeight + "px";
+      });
+    }
+    setInterval(animateBars, 500); // elke halve seconde nieuwe hoogte
   </script>
 </body>
 </html>
