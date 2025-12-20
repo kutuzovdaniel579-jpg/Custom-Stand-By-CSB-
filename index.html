@@ -4,11 +4,74 @@
   <meta charset="UTF-8">
   <title>Custom Stand-By Webapp</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <style>
+    html, body {
+      margin: 0;
+      height: 100vh;
+      background: black;
+      background-image: url('https://i.postimg.cc/nL2sHqsR/IMG-4296.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* klok in het midden */
+    #clock {
+      font-size: 70px;
+      font-family: monospace;
+      color: white;
+      text-shadow: 0 0 10px rgba(255,255,255,0.7);
+      z-index: 1;
+    }
+
+    /* balkjes onderaan, full width */
+    .signal-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: flex-end;
+    }
+
+    .bar {
+      flex: 1;
+      margin: 0 4px;
+      background: #ffffff;
+      border-radius: 2px;
+      transition: height 0.3s ease;
+    }
+
+    /* app-links boven de klok */
+    .app-links {
+      display: flex;
+      flex-direction: row;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .app-links a {
+      font-family: sans-serif;
+      font-size: 18px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .app-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- LINKS NAAR APPS (exacte volgorde) -->
+  <!-- Links naar apps -->
   <div class="app-links">
     <a href="https://discord.com/app">Discord</a>
     <a href="https://www.snapchat.com/">Snapchat</a>
@@ -44,7 +107,7 @@
     updateClock();
     setInterval(updateClock, 1000);
 
-    // balkjes bewegen
+    // balkjes bewegen omhoog/omlaag
     const bars = document.querySelectorAll(".bar");
     function animateBars() {
       bars.forEach(bar => {
@@ -54,6 +117,5 @@
     }
     setInterval(animateBars, 500);
   </script>
-
 </body>
 </html>
