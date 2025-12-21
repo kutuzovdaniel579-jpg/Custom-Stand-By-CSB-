@@ -6,42 +6,6 @@
 
 <style>
 
-/* knoppen bovenaan */
-.app-links {
-  position: fixed;
-  top: 20px;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between; /* lock links, huis rechts */
-  padding: 0 20px;
-  z-index: 9999;
-}
-
-.app-links .icon {
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  transition: filter 0.2s ease;
-}
-
-.app-links .icon:hover {
-  filter: drop-shadow(0 0 4px white);
-}
-
-.app-links a {
-  font-family: sans-serif;
-  font-size: 18px;
-  font-weight: bold;
-  color: rgb(30, 190, 212);
-  text-shadow:
-    -1px -1px 0 black,
-     1px -1px 0 black,
-    -1px  1px 0 black,
-     1px  1px 0 black;
-  text-decoration: none;
-}
-
 /* klok */
 #clock {
   font-size: 90px;
@@ -78,17 +42,6 @@
 </head>
 
 <body>
-
-<!-- ICONEN LINKS & RECHTS BOVENAAN -->
-<div class="app-links">
-  <a href="shortcuts://run-shortcut?name=Lock">
-    <img src="lock.svg" alt="Lock" class="icon">
-  </a>
-
-  <a href="shortcuts://run-shortcut?name=Home">
-    <img src="home.svg" alt="Home" class="icon">
-  </a>
-</div>
 
 <!-- KLOK -->
 <div id="clock"></div>
